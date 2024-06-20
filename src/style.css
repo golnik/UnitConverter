@@ -1,10 +1,8 @@
 body {
     padding-top: 20px;
-    background-color: #202020;
   }
   
   h1 {
-    color: #E5E5E5;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 
     font-weight: 700;
@@ -37,8 +35,6 @@ body {
   }
   
   .converter-wrapper span select {
-    background-color: #263648;
-    color: #fff;
     font-size: inherit;
     padding: 10px;
     width: 100%;
@@ -64,8 +60,7 @@ body {
     line-height: 1;
     right: 1.5em;
     top: 50%;
-    margin-top: -.5em;
-    color: #131B24;
+    margin-top: .5em;
   }
   
   .converter-wrapper span::before { /*  Custom dropdown arrow cover */
@@ -74,25 +69,18 @@ body {
     top: 0;
     bottom: 0;
     border-radius: 0;
-    background-color: #202E3C;
+  }
+  
+  .flex-container {
+    display: flex;
   }
   
   .converter-side-a,
   .converter-side-b {
+    flex: 1;
     float: left;
     margin-top: 10px;
     box-sizing: border-box;
-    width: 45%;
-  }
-  
-  .converter-equals {
-    float: left;
-    box-sizing: border-box;
-    width: 10%;
-    color: #FFF;
-    font-size: 2.4em;
-    line-height: 0;
-    text-align: center;
   }
   
   .converter-side-a {
@@ -101,4 +89,14 @@ body {
   
   .converter-side-b {
     padding-left: 10px;
+  }  
+  
+  .converter-equals {
+    float: left;
+    margin-top: 40px;
+    box-sizing: border-box;
+    width: 10%;
+    font-size: 2.4em;
+    line-height: 0;
+    text-align: center;
   }

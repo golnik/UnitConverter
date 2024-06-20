@@ -33,6 +33,7 @@ indx += 1;
 Units[indx] = new Unit("Time");
 Units[indx].addConversion("atomic unit",1.0);
 Units[indx].addConversion("attosecond",24.188843265864);
+Units[indx].addConversion("femtoseconds",24.188843265864/1000);
 indx += 1;
 
 //energy
@@ -59,7 +60,7 @@ class EnergyUnit extends Unit{
       var targetFactor = this.factor[targetIndex];
       
       var h = 2. * Math.PI;
-      var c = 137.03599;
+      var c = 137.03599917721;
 
       result = h*c / (value / sourceFactor) * targetFactor;
     }
@@ -75,6 +76,12 @@ Units[indx].addConversion("nm",0.052917721090380,1);
 indx += 1;
 
 //field intensity
+Units[indx] = new Unit("Field Intensity");
+Units[indx].addConversion("atomic unit",1.0);
+var au2Vpnm = 5.14220675112E+2;
+Units[indx].addConversion("V/nm",au2Vpnm);
+Units[indx].addConversion("V/m",au2Vpnm*1E9);
+indx += 1;
 
 //cross section
 
@@ -103,7 +110,7 @@ function CalculateUnit(sourceForm, targetForm) {
   var sourceValue = sourceForm.unit_input.value;
 
   // First check if the user has given numbers or anything that can be made to one...
-  sourceValue = parseFloat(sourceValue);
+  //sourceValue = parseFloat(sourceValue);
   if (!isNaN(sourceValue) || sourceValue == 0) {
     // If we can make a valid floating-point number, put it in the text box and convert!
     sourceForm.unit_input.value = sourceValue;
@@ -132,6 +139,9 @@ function ConvertFromTo(sourceForm, targetForm) {
 
   // All that's left is to update the target input box:
   // optionally one can use .toExponential() to display number in scientific notation
+  if(Math.abs(result)>1E+3 || Math.abs(result)<1E-3){
+    result = result.toExponential();
+  }  
   targetForm.unit_input.value = result;
 }
 

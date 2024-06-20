@@ -26,9 +26,11 @@
         </span>
       </form>
 
+      <div class="flex-container">
+
       <div class="converter-side-a">
         <form name="form_A" onSubmit="return false">
-          <input type="text" class="numbersonly" name="unit_input" maxlength="20" value="0" onKeyUp="CalculateUnit(document.form_A, document.form_B)">
+          <input type="text" class="numbersonly" name="unit_input" maxlength="20" value="1" onKeyUp="CalculateUnit(document.form_A, document.form_B)">
           <span>
             <select name="unit_menu" onChange="CalculateUnit(document.form_B, document.form_A)">
             </select>
@@ -42,7 +44,7 @@
 
       <div class="converter-side-b">
         <form name="form_B" onSubmit="return false">
-          <input type="text" class="numbersonly" name="unit_input" maxlength="20" value="0" onkeyup="CalculateUnit(document.form_B, document.form_A)">
+          <input type="text" class="numbersonly" name="unit_input" maxlength="20" value="1" onkeyup="CalculateUnit(document.form_B, document.form_A)">
           <span>
             <select name="unit_menu" onChange="CalculateUnit(document.form_A, document.form_B)">
             </select>
@@ -50,6 +52,8 @@
         </form>
       </div> <!-- /converter-side-b -->
     </div><!-- /converter-wrapper -->
+
+  </div>
 
    </body>
  </html>
