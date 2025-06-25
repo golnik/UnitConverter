@@ -1,6 +1,11 @@
 /* ====================================
     Global Variable & Data Definitions
    ====================================*/
+
+   var h = 2. * Math.PI;    //Planck constant in atomic units
+   var c = 137.03599917721; //speed of light in atomic units
+   var z = 376.730313413;   //impedance of free space in Ohm
+
    class Unit{
     constructor(name) {
       this.name = name;
@@ -28,7 +33,7 @@
   //length
   Units[indx] = new Unit("Length");
   Units[indx].addConversion("Bohr (au)",1.0);
-  Units[indx].addConversion("A",0.52917721090380);
+  Units[indx].addConversion("Å",0.52917721090380);
   Units[indx].addConversion("nm",0.052917721090380);
   Units[indx].addConversion("cm",0.52917721090380E-8);
   Units[indx].addConversion("m",0.52917721090380E-10);
@@ -76,24 +81,9 @@
           break;
         // if converting energy to wavelength (and vise-versa)
         case 0:
-        case 1:
-          var h = 2. * Math.PI;
-          var c = 137.03599917721;
-  
+        case 1:  
           result = h*c / (value / sourceFactor) * targetFactor;
-          break;  
-        // if converting field strength to field intensity
-        case 2:
-          var z = 376.730313413
-        
-          result = targetFactor * Math.pow(value/sourceFactor, 2) /z;
-          break;
-        // if converting field intensity to field strength 
-        case 3:
-          var z = 376.730313413 
-             
-          result = targetFactor * Math.pow(z * value/sourceFactor, 1/2);
-          break;    
+          break;   
       }
       return result;
     }
@@ -105,16 +95,45 @@
   Units[indx].addConversion("eV",27.211386245988,0);
   Units[indx].addConversion("nm",0.052917721090380,1);
   indx += 1;
+
+  class FieldUnit extends EnergyUnit{
+
+    convert(sourceIndex,targetIndex,value){
+      var type1 = this.type[sourceIndex];
+      var type2 = this.type[targetIndex];
+      var sourceFactor = this.factor[sourceIndex];
+      var targetFactor = this.factor[targetIndex];
   
+      var result = 0.;
+
+      // different equations used based on starting and target units
+      switch (type1) {
+        // if units are of the same type, we convert them as usual
+        case type2:
+          result = super.convert(sourceIndex,targetIndex,value);
+          break;
+        // if converting field strength to field intensity
+        case 0:        
+          result = targetFactor * Math.pow(value/sourceFactor, 2) /z;
+          break;
+        // if converting field intensity to field strength 
+        case 1:             
+          result = targetFactor * Math.pow(z * value/sourceFactor, 1/2);
+          break;    
+      }
+      return result;
+    }
+  }
+
   /*field strength <-> field intensity, 
   V/m and W/m^2 factors are "reference 1" to ease conversions*/
-  Units[indx] = new EnergyUnit("Field Strength and Intensity");
-  Units[indx].addConversion("atomic unit",1.94469037E-12, 2);
-  Units[indx].addConversion("V/nm",1E-9, 2);
-  Units[indx].addConversion("V/m",1, 2);
+  Units[indx] = new FieldUnit("Field Strength and Intensity");
+  Units[indx].addConversion("au of electric field",1.94469037E-12, 0);
+  Units[indx].addConversion("V/nm",1E-9, 0);
+  Units[indx].addConversion("V/m",1, 0);
   // field intensity units
-  Units[indx].addConversion("W/cm\u00B2",1E-4, 3);
-  Units[indx].addConversion("W/m\u00B2",1, 3);
+  Units[indx].addConversion("W/cm\u00B2",1E-4, 1);
+  Units[indx].addConversion("W/m\u00B2",1, 1);
 
   indx += 1;
   
@@ -183,8 +202,9 @@
 
     var type1 = Units[propIndex].type[sourceIndex];
     var type2 = Units[propIndex].type[targetIndex];
+
     // update explanation for cross magnitude conversions (nonlinear)
-    switch (type1) {
+    /*switch (type1) {
       case type2: 
         explanation.textContent = "";
         break;
@@ -198,7 +218,7 @@
       case 3:
         explanation.textContent = "I \u221D E\u00B2";
         break;    
-    }
+    }*/
   }
 
   // This fragment initializes the property dropdown menu using the data defined above in the 'Data Definitions' section
