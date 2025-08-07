@@ -6,11 +6,27 @@
      <title>Unit Converter</title>
      <link rel="stylesheet" href="src/style.css" />
      <script src="src/script.js"></script>     
+     <script src="src/calculator.js"></script>
    </head>
    <body>
 
     <div class="converter-wrapper">
       <h1>Unit Converter</h1>
+
+      <div style="padding-bottom: 30px;" class="flex-container">
+        <div class="converter-side-a">
+          <div style="padding-top: 10px;" class="numbersonly"><input id="eV" name="eV" type="text" value="1.0" onkeyup="converter('eV')"/>eV</div>
+          <div style="padding-top: 10px;" class="numbersonly"><input id="nm" name="nm" type="text" value="1239.84" onkeyup="converter('nm')"/>nm</div>
+          <div style="padding-top: 10px;" class="numbersonly"><input id="cm" name="cm" type="text" value="8065.56" onkeyup="converter('cm')"/>cm-1</div>
+          <div style="padding-top: 10px;" class="numbersonly"><input id="ps" name="ps" type="text" value="0.00414" onkeyup="converter('ps')"/>ps</div>
+        </div>
+        <div class="converter-side-b">
+          <div style="padding-top: 10px;" class="numbersonly"><input id="meV" name="meV" type="text" value="1000.0" onkeyup="converter('meV')"/>meV</div>
+          <div style="padding-top: 10px;" class="numbersonly"><input id="um" name="um" type="text" value="1.23984" onkeyup="converter('um')"/>um</div>
+          <div style="padding-top: 10px;" class="numbersonly"><input id="GHz" name="GHz" type="text" value="241798.0" onkeyup="converter('GHz')"/>GHz</div>
+          <div style="padding-top: 10px;" class="numbersonly"><input id="fs" name="fs" type="text" value="4.13567" onkeyup="converter('fs')"/>fs</div>
+        </div>
+      </div>
 
       <form name="property_form">
         <span>
