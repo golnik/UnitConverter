@@ -200,8 +200,8 @@
 
     targetForm.unit_input.value = result;
 
-    var type1 = Units[propIndex].type[sourceIndex];
-    var type2 = Units[propIndex].type[targetIndex];
+    //var type1 = Units[propIndex].type[sourceIndex];
+    //var type2 = Units[propIndex].type[targetIndex];
 
     // update explanation for cross magnitude conversions (nonlinear)
     /*switch (type1) {
@@ -234,7 +234,7 @@
   }
   
   // Restricting textboxes to accept numbers + navigational keys only
-  document.getElementByClass('numbersonly').addEventListener('keydown', function(e) {
+/*  document.getElementByClass('numbersonly').addEventListener('keydown', function(e) {
     var key = e.keyCode ? e.keyCode : e.which;
   
     if (!([8, 9, 13, 27, 46, 110, 190].indexOf(key) !== -1 ||
@@ -246,4 +246,4 @@
         (key >= 96 && key <= 105) // Numpad
         (key == 190) // Numpad
       )) e.preventDefault();
-  });
+  });*/
