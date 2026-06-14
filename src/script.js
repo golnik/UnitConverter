@@ -93,6 +93,8 @@
   Units[indx] = new EnergyUnit("Energy/Wavelength");
   Units[indx].addConversion("Hartree (au)",1.0,0);
   Units[indx].addConversion("eV",27.211386245988,0);
+  Units[indx].addConversion("kcal/mol",627.5095,0);
+  Units[indx].addConversion("kJ/mol",2625.5,0);
   Units[indx].addConversion("nm",0.052917721090380,1);
   indx += 1;
 
