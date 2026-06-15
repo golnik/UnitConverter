@@ -16,10 +16,10 @@ var calculator = function(energy){
     newValues[1] = (h*c*1e9)/energy;  //nm
     newValues[2] = energy/(h*c*1e2);  //cm-1
     newValues[3] = 1e3*(h*1e12)/energy;//fs
-    newValues[4] = energy*1e3;        // meV
+    newValues[4] = energy*0.0367492929;//Hartree
     newValues[5] = h*c*1e6/energy;    // um
     newValues[6] = energy/(h*1e12);   // THz
-    newValues[7] = 1e6*(h*1e12)/energy;//as
+    newValues[7] = 170.017573254/energy;//aut
     return newValues
 };
 
@@ -31,10 +31,10 @@ var converter = function(doc,sender){
         doc.getElementById("nm"),
         doc.getElementById("cm"),
         doc.getElementById("fs"),
-        doc.getElementById("meV"),
+        doc.getElementById("hartree"),
         doc.getElementById("um"),
         doc.getElementById("THz"),
-        doc.getElementById("as")
+        doc.getElementById("aut")
     ];
     var energy = "1";
     var toSkip = "";
@@ -51,9 +51,9 @@ var converter = function(doc,sender){
             energy = parseFloat(doc.getElementById("cm").value)*(h*c*1e2);
             toSkip = doc.getElementById("cm");
             break;
-        case 'meV':
-            energy = parseFloat(1e-3*doc.getElementById("meV").value);
-            toSkip = doc.getElementById("meV");
+        case 'hartree':
+            energy = parseFloat(27.211386245981*doc.getElementById("hartree").value);
+            toSkip = doc.getElementById("hartree");
             break;
         case 'um':
             energy = h*c*1e6/parseFloat(doc.getElementById("um").value);
@@ -67,9 +67,9 @@ var converter = function(doc,sender){
             energy = 1e3*h*1e12/parseFloat(doc.getElementById("fs").value);
             toSkip = doc.getElementById("fs");
             break;
-        case 'as':
-            energy = 1e6*h*1e12/parseFloat(doc.getElementById("as").value);
-            toSkip = doc.getElementById("as");
+        case 'aut':
+            energy = 170.017573254/parseFloat(doc.getElementById("aut").value);
+            toSkip = doc.getElementById("aut");
             break;
         default:
             energy="1";
