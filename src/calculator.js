@@ -1,8 +1,8 @@
-var c = 299792458;          //m/s
-var h = 4.135667696e-15;    //eV/Hz
-var au2eV = 27.211386245981;
-
 var calculator = function(energy){
+    var c = 299792458;          //m/s
+    var h = 4.135667696e-15;    //eV/Hz
+    var au2eV = 27.211386245981;
+
     var newValues = [
         0,
         0,
@@ -26,6 +26,10 @@ var calculator = function(energy){
 };
 
 var converter = function(doc,sender){
+    var c = 299792458;          //m/s
+    var h = 4.135667696e-15;    //eV/Hz
+    var au2eV = 27.211386245981;
+
     var elements = [
         doc.getElementById("eV"),
         doc.getElementById("nm"),
